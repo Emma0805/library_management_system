@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="entity">
+    <class name="User" table="USER">
+        <id name="userId" column="UserID">
+            <generator class="native" />
+        </id>
+        <property name="username"/>
+        <property name="password" />
+        <property name="level" />
+    </class>
+    
+    <class name="Book" table="BOOK">
+        <id name="bookId" column="BookID">
+            <generator class="native" />
+        </id>
+        <property name="ISBN"/>
+        <property name="author"/>
+        <property name="name"/>
+        <property name="studentId" type="java.lang.Integer"/>
+        <property name="dateCheckout" type="java.sql.Date" column="Date_Checkout"/>
+    </class>
+    
+    <class name="Class" table="CLASS">
+        <id name="classId" column="ClassID">
+            <generator class="native" />
+        </id>
+        <property name="section"/>
+        <property name="bookId"/>
+    </class>
+    
+    <class name="Parent" table="PARENT">
+	    <composite-id>
+	        <key-property  name="firstName" column="first_Name"/>
+	        <key-property  name="lastName" column="last_Name"/>
+	        <key-property  name="studentId"/>
+	    </composite-id>
+    </class>
+    
+    <class name="Register" table="REGISTER">
+	    <composite-id>
+	        <key-property  name="studentId"/>
+	        <key-property  name="classId"/>
+	    </composite-id>
+    </class>
+    
+    <class name="Student" table="STUDENT">
+        <id name="studentId" column="StudentID">
+            <generator class="native" />
+        </id>
+        <property name="firstName" column="first_Name"/>
+        <property name="lastName" column="last_Name"/>
+        <property name="teacherId"/>
+        <property name="userId"/>
+    </class>
+    
+    <class name="Teacher" table="TEACHER">
+        <id name="teacherId" column="TeacherID">
+            <generator class="native" />
+        </id>
+        <property name="firstName" column="first_Name"/>
+        <property name="lastName" column="last_Name"/>
+    </class>
+</hibernate-mapping>
